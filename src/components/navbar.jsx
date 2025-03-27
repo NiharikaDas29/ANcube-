@@ -6,9 +6,8 @@ import { cn } from "@/components/lib/utils";
 export default function NavbarDemo() {
   return (
     
-    <div className="relative w-full flex items-center justify-center flex-col">
-      <Navbar className="top-5 w-fit " />
-      
+    <div className="relative w-full flex items-center justify-center flex-col shadow-xl">
+      <Navbar className="top-5 w-fit" />
     </div>
    
   );
