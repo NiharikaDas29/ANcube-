@@ -37,7 +37,7 @@ export default function Bg() {
     <p className="text-gray-600 mt-4">
       AI-driven platform to enhance your creativity effortlessly.
     </p>
-    <div className="mt-6">
+    <div className="mt-6 flex flex-col gap-3 items-center justify-center sm:flex-row">
     <a
         href="#"
         className="bg-blue-600 text-white px-6 py-4 rounded-lg  hover:bg-blue-700 md:hidden"
@@ -45,7 +45,7 @@ export default function Bg() {
         Get Started
       </a>
     
-      <button className="ml-2 border border-gray-400 text-gray-600 px-6 py-3 rounded-lg hover:bg-gray-100">
+      <button className=" border border-gray-400 text-gray-600 px-6 py-3 rounded-lg hover:bg-gray-100">
         Watch Demo
       </button>
     </div>

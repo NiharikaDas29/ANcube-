@@ -9,11 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@google/genai": "^0.1.0",
+    "axios": "^1.8.4",
     "clsx": "^2.1.1",
+    "firebase": "^11.5.0",
+    "lucide": "^0.485.0",
+    "lucide-react": "^0.485.0",
     "motion": "^12.6.0",
     "next": "15.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "shadcn": "^2.4.0-canary.17",
     "tailwind-merge": "^3.0.2"
   },
   "devDependencies": {
