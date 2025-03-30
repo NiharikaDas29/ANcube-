@@ -5,7 +5,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
-import { Pencil, Loader2, RefreshCw } from 'lucide-react';
+import { Pencil, Loader2, RefreshCw, Download } from 'lucide-react';
 
 const HotelSocialMediaGenerator = () => {
   const [hotelName, setHotelName] = useState('');
@@ -217,6 +217,41 @@ const HotelSocialMediaGenerator = () => {
     await generateImageForPost(postId, post.text);
   };
 
+  // New function to download an image
+  const downloadImage = async (postId) => {
+    const post = generatedPosts.find(p => p.id === postId);
+    if (!post || !post.image || post.image.includes('/api/placeholder')) {
+      alert('No valid image available to download');
+      return;
+    }
+    
+    try {
+      // Create a temporary anchor element
+      const link = document.createElement('a');
+      
+      // If the image is a data URL, we can directly download it
+      if (post.image.startsWith('data:')) {
+        link.href = post.image;
+      } else {
+        // Otherwise, we need to fetch the image first
+        const response = await fetch(post.image);
+        const blob = await response.blob();
+        link.href = URL.createObjectURL(blob);
+      }
+      
+      // Set filename for download
+      link.download = `${hotelName.replace(/\s+/g, '-')}_post_${postId}.jpg`;
+      
+      // Append to body, click, and remove
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error("Error downloading image:", error);
+      alert("Failed to download image. Please try again.");
+    }
+  };
+
   return (
     <div className='h-fit flex items-center justify-center p-4'>
       <Card className="w-full h-fit max-w-4xl mx-auto">
@@ -293,11 +328,23 @@ const HotelSocialMediaGenerator = () => {
                               <Loader2 className="h-8 w-8 animate-spin text-blue-500" />
                             </div>
                           ) : (
-                            <img 
-                              src={post.image} 
-                              alt={`Generated Event Image`} 
-                              className="w-full h-70 object-cover rounded-md"
-                            />
+                            <>
+                              <img 
+                                src={post.image} 
+                                alt={`Generated Event Image`} 
+                                className="w-full h-70 object-cover rounded-md"
+                              />
+                              {/* Download button overlay */}
+                              <Button
+                                      variant="secondary"
+                                      size="sm"
+                                       className="absolute bottom-2 right-2 bg-white/80 hover:bg-white shadow-sm flex items-center gap-1"
+                                      onClick={() => downloadImage(post.id)}
+                                      disabled={post.image.includes('/api/placeholder')}
+>
+  <Download className="h-4 w-4" /> Save
+</Button>
+                            </>
                           )}
                         </div>
                         <p className="text-sm">{post.text}</p>
