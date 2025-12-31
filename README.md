@@ -157,9 +157,9 @@ Key files to review for behavior:
 
 ## images 📸
 
-- `/public/images/demo1.jpg` — hero / dashboard screenshot placeholder
-- `/public/images/demo2.jpg` — feature tile placeholder
-- `/public/images/demo3.jpg` — Generated Posts
-- `/public/images/demo4.jpg` — structure of a post
+- ![Hero screenshot](public/images/demo1.jpg) — hero / dashboard screenshot placeholder
+- ![Feature tile](public/images/demo2.jpg) — feature tile placeholder
+- ![Generated posts example](public/images/demo3.jpg) — Generated Posts
+- ![Post structure](public/images/demo4.jpg) — structure of a post
 
 
